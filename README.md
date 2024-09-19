@@ -10,4 +10,5 @@ Project Features:
 - Programming Language: Python
 - Machine Learning: scikit-learn
 - Visualization: matplotlib
+
 This project showcases the application of machine learning to real-world problems, with a focus on regression modeling for price prediction.
