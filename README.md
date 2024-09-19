@@ -7,8 +7,8 @@ Project Features:
 - Data Analysis and Visualization: Insights were drawn from the data through detailed analysis and visualizations.
 - Model Training and Evaluation: A regression model was trained and evaluated to predict car prices with high accuracy.
 - Technologies Used:
-- Programming Language: Python
-- Machine Learning: scikit-learn
-- Visualization: matplotlib
+  - Programming Language: Python
+  - Machine Learning: scikit-learn
+  - Visualization: matplotlib
 
 This project showcases the application of machine learning to real-world problems, with a focus on regression modeling for price prediction.
