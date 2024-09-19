@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="../static/style/accueil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <!-- Titre -->
+        <h4><i class="fa-solid fa-car-side" style="color: #f66213;"></i> Prédiction Prix Des Voitures</h4>
+        <!-- Liens centraux -->
+        <div class="navbar-center"></div>
+        <!-- Boutons à droite -->
+        <div class="navbar-right">
+            <button class="nav-button active"><a href="/accueil">Accueil</a></button>
+            <button class="nav-button"><a href="historique">Historique</a></button>
+            <button class="nav-button"><a href="/profile"><i class="fa-solid fa-user"></i></a></button>
+            <button class="nav-button"><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="left">
+                <div class="user-info">
+                    Bienvenue, {{ firstname }} {{ lastname }} ! 
+                    <br><br> Nous sommes ravis de vous accueillir sur notre site dédié à la prédiction des ventes de voitures grâce aux méthodes avancées de machine learning. 
+                    <br><br> Que vous soyez un professionnel du secteur automobile ou simplement curieux de découvrir comment les technologies de pointe peuvent révolutionner les prévisions de marché, vous êtes au bon endroit. 
+                    <br><br> Explorez nos outils interactifs, nos analyses détaillées et nos modèles prédictifs pour obtenir des insights précis et éclairés sur les tendances de vente de voitures. 
+                    <br><br> Bonne exploration et n'hésitez pas à nous contacter si vous avez des questions ou besoin d'assistance !
+                </div>
+                <div class="add-prediction-button">
+                    <button class="nav-button"><a href="/pred">Commencez Votre Prédiction</a></button>
+                </div>
+            </div>
+            <!-- <div class="right">
+                <img src="../static/description/voituremaroc.jpg" alt="Image illustrative">
+            </div> -->
+        </div>
+    </div>
+</body>
+</html>

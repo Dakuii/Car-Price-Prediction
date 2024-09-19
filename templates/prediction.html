@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Prix Des Voitures Au Maroc</title>
+    <link rel="stylesheet" href="../static/style/prediction.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script>
+        $(document).ready(function(){
+            $('#Marque').change(function(){
+                var selectedMarque = $(this).val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/get_models',
+                    data: { 'Marque': selectedMarque },
+                    success: function(response){
+                        $('#Modele').empty();
+                        $.each(response.models, function(index, value){
+                            $('#Modele').append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    }
+                });
+            });
+
+            $('form').submit(function(event){
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '/predict',
+                    data: $('form').serialize(),
+                    success: function(response){
+                        $('#prediction-result').html(response);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <!-- Titre -->
+        <h4><i class="fa-solid fa-car-side" style="color: #f66213;"></i> Prédiction Prix Des Voitures</h4>
+        <!-- Liens centraux -->
+        <div class="navbar-center"></div>
+        <!-- Boutons à droite -->
+        <div class="navbar-right">
+            <button class="nav-button"><a href="/accueil">Accueil</a></button>
+            <button class="nav-button"><a href="historique">Historique</a></button>
+            <button class="nav-button"><a href="/profile"><i class="fa-solid fa-user"></i></a></button>
+            <button class="nav-button"><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
+        </div>
+    </div>
+    
+    <form action="/predict" method="post">
+        <div class="form-grid">
+            <!-- Marque and Modele -->
+            <div class="form-group">
+                <label for="Marque">Marque :</label>
+                <select name="Marque" id="Marque">
+                    {% for marque in marques %}
+                    <option value="{{ marque }}">{{ marque }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Modele">Modele :</label>
+                <select name="Modele" id="Modele">
+                    {% for modele in modeles %}
+                    <option value="{{ modele }}">{{ modele }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Annee and Ville -->
+            <div class="form-group">
+                <label for="Annee">Annee :</label>
+                <select name="Annee" id="Annee">
+                    {% for annee in annees %}
+                    <option value="{{ annee }}">{{ annee }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Ville">Ville :</label>
+                <select name="Ville" id="Ville">
+                    {% for ville in villes %}
+                    <option value="{{ ville }}">{{ ville }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Vendeur and Main -->
+            <div class="form-group">
+                <label for="Vendeur">Vendeur :</label>
+                <select name="Vendeur" id="Vendeur">
+                    {% for vendeur in vendeurs %}
+                    <option value="{{ vendeur }}">{{ vendeur }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Main">Main :</label>
+                <select name="Main" id="Main">
+                    {% for main in mains %}
+                    <option value="{{ main }}">{{ main }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Kilometrage and Carburant -->
+            <div class="form-group">
+                <label for="Kilometrage">Kilometrage :</label>
+                <select name="Kilometrage" id="Kilometrage">
+                    {% for kilometrage in kilometrages %}
+                    <option value="{{ kilometrage }}">{{ kilometrage }} km</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Carburant">Carburant :</label>
+                <select name="Carburant" id="Carburant">
+                    {% for carburant in carburants %}
+                    <option value="{{ carburant }}">{{ carburant }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Transmission and Puissance_fiscale -->
+            <div class="form-group">
+                <label for="Transmission">Transmission :</label>
+                <select name="Transmission" id="Transmission">
+                    {% for transmission in transmissions %}
+                    <option value="{{ transmission }}">{{ transmission }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Puissance_fiscale">Puissance fiscale :</label>
+                <select name="Puissance_fiscale" id="Puissance_fiscale">
+                    {% for puissance_fiscale in puissance_fiscales %}
+                    <option value="{{ puissance_fiscale }}">{{ puissance_fiscale }} cv</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Puissance_dynamique and Couleur -->
+            <div class="form-group">
+                <label for="Puissance_dynamique">Puissance dynamique :</label>
+                <select name="Puissance_dynamique" id="Puissance_dynamique">
+                    {% for puissance_dynamique in puissance_dynamiques %}
+                    <option value="{{ puissance_dynamique }}">{{ puissance_dynamique }} ch</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Couleur">Couleur :</label>
+                <select name="Couleur" id="Couleur">
+                    {% for couleur in couleurs %}
+                    <option value="{{ couleur }}">{{ couleur }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Etat -->
+            <div class="form-group single">
+                <label for="Etat">Etat :</label>
+                <select name="Etat" id="Etat">
+                    {% for etat in etats %}
+                    <option value="{{ etat }}">{{ etat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <input type="submit" value="Prédire le Prix">
+    </form>
+
+    <!-- Ajoutez une balise div pour afficher le résultat -->
+    <div class="result-container">
+        <h2>Résultat de la prédiction :</h2>
+        <!-- Cette div sera remplie avec le résultat de la prédiction -->
+        <div id="prediction-result"></div>
+    </div>
+</body>
+</html>

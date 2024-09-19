@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="../static/style/login.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Inscription</h2>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-message flash-success">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('register') }}" method="post">
+
+            <label for="username">Identifiant:</label>
+            <input type="text" id="username" name="username" required><br>
+
+            <label for="username">Nom d'utilisateur:</label>
+            <input type="text" id="firstname" name="firstname" required><br>
+
+            <label for="username">Prénom d'utilisateur:</label>
+            <input type="text" id="lastname" name="lastname" required><br>
+
+            <label for="username">Email d'utilisateur:</label>
+            <input type="text" id="email" name="email" required><br>
+
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="password" required><br>
+            
+            <button type="submit">S'inscrire</button>
+        </form>
+        <p>Déjà un compte ? <a href="{{ url_for('login') }}">Connectez-vous ici</a></p>
+    </div>
+</body>
+</html>

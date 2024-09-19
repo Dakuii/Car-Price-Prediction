@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique des prédictions</title>
+    <link rel="stylesheet" href="../static/style/historique.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <!-- Titre -->
+        <h4><i class="fa-solid fa-car-side" style="color: #f66213;"></i> Prédiction Prix Des Voitures</h4>
+        <!-- Liens centraux -->
+        <div class="navbar-center"></div>
+        <!-- Boutons à droite -->
+        <div class="navbar-right">
+            <button class="nav-button"><a href="/accueil">Accueil</a></button>
+            <button class="nav-button active"><a href="historique">Historique</a></button>
+            <button class="nav-button"><a href="/profile"><i class="fa-solid fa-user"></i></a></button>
+            <button class="nav-button"><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
+        </div>
+    </div>
+
+    <!-- Bouton pour ajouter une prédiction -->
+    <div class="add-prediction-button">
+        <button><a href="/pred">Ajouter Une Prédiction</a></button>
+    </div>
+
+    <!-- Tableau de données -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Marque</th>
+                    <th>Modèle</th>
+                    <th>Année</th>
+                    <th>Ville</th>
+                    <th>Vendeur</th>
+                    <th>Main</th>
+                    <th>Kilométrage</th>
+                    <th>Carburant</th>
+                    <th>Transmission</th>
+                    <th>Puissance fiscale</th>
+                    <th>Puissance dynamique</th>
+                    <th>Couleur</th>
+                    <th>État</th>
+                    <th>Prix prédit</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prediction in predictions %}
+                <tr>
+                    <td>{{ prediction[2] }}</td>
+                    <td>{{ prediction[3] }}</td>
+                    <td>{{ prediction[4] }}</td>
+                    <td>{{ prediction[5] }}</td>
+                    <td>{{ prediction[6] }}</td>
+                    <td>{{ prediction[7] }}</td>
+                    <td>{{ prediction[8] }} KM</td>
+                    <td>{{ prediction[9] }}</td>
+                    <td>{{ prediction[10] }}</td>
+                    <td>{{ prediction[11] }} CV</td>
+                    <td>{{ prediction[12] }} CH</td>
+                    <td>{{ prediction[13] }}</td>
+                    <td>{{ prediction[14] }}</td>
+                    <td>{{ prediction[15]|int }} DH</td>
+                    <td>
+                        <form action="/delete_prediction/{{ prediction[0] }}" method="POST" style="display:inline;">
+                            <button type="submit" class="delete-button">Supprimer</button>
+                        </form>
+                        <!-- Uncomment and implement edit functionality if needed
+                        <form action="/edit_prediction/{{ prediction[0] }}" method="GET" style="display:inline;">
+                            <button type="submit" class="edit-button">Modifier</button>
+                        </form>
+                        -->
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
